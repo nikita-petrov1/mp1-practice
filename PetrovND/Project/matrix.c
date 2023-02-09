@@ -1,0 +1,64 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include "matrix.h"
+
+void alloc_matrix(Matrix** matrix, int n) {
+	int i = 0;
+	*matrix = (Matrix*)malloc(sizeof(Matrix) * 1);
+	(*matrix)->n = n;
+	(*matrix)->data = (double*)malloc(n*n * sizeof(double));
+}
+
+void free_matrix(Matrix** matrix) {
+	free((*matrix)->data);
+	free(*matrix);
+}
+
+void fill_matrix(Matrix* matrix) {
+	int i = 0;
+	for (; i < matrix->n; i++) {
+		int j = 0;
+		for (; j < matrix->n; j++) {
+			scanf("%lf", &(matrix->data[i * matrix->n + j]));
+		}
+	}
+	printf("\n");
+}
+
+void print_matrix(Matrix* matrix) {
+	int i = 0;
+	for (; i < matrix->n; i++) {
+		int j = 0;
+		for (; j < matrix->n; j++) {
+			printf("%.2lf ", matrix->data[i * matrix->n + j]);
+		}
+		printf(" \n");
+	}
+}
+
+Matrix* addition_matrix(Matrix* m1, Matrix* m2) {
+	int i = 0;
+	int n;
+	Matrix* result;
+	if (m1->n != m2->n) {
+		printf("ERROR: Matrices must have equal dimensions!");
+		return NULL;
+	}
+	n = m1->n;
+	alloc_matrix(&result, n);
+	for (; i < n*n; i++) {
+		result->data[i] = m1->data[i] + m2->data[i];
+	}
+	return result;
+}
+
+Matrix* addition_constant(Matrix* matrix, double constant){
+	int i = 0;
+	Matrix* result;
+	int n = matrix->n;
+	alloc_matrix(&result, n);
+	for (; i < n * n; i++) {
+		result->data[i] = matrix->data[i] + constant;
+	}
+	return result;
+}
