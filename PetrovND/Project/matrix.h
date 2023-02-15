@@ -12,5 +12,7 @@ void fill_matrix(Matrix* matrix);
 void print_matrix(Matrix* matrix);
 Matrix* addition_matrix(Matrix* m1, Matrix* m2);
 Matrix* addition_constant(Matrix* matrix, double constant);
+Matrix* multiplication_by_constant(Matrix* matrix, double constant);
+Matrix* matrix_multiplication(Matrix* m1, Matrix* m2);
 
 #endif 
