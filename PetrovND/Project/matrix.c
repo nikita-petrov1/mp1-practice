@@ -3,7 +3,6 @@
 #include "matrix.h"
 
 void alloc_matrix(Matrix** matrix, int n) {
-	int i = 0;
 	*matrix = (Matrix*)malloc(sizeof(Matrix) * 1);
 	(*matrix)->n = n;
 	(*matrix)->data = (double*)malloc(n*n * sizeof(double));
